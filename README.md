@@ -17,11 +17,6 @@ Pixela API Interaction CLI is a command-line tool that allows users to interact 
 1. Run `main.py`.
 2. Choose from the menu options to perform desired actions.
 
-## Requirements
-
-- Python 3.x
-- `requests` library (install via `pip install requests`)
-
 ## Project Structure
 
 - `main.py`: Contains the main program loop and user interface.
