@@ -30,6 +30,7 @@ def get_user_graphs(username, token):
     response = make_pixela_request(endpoint, token=token)
     json_data = response.json()
     graphs = json_data.get('graphs', [])
+    print(endpoint)
     return [(graph['id'], graph['name']) for graph in graphs]
 
 def print_graphs(graphs):
@@ -51,6 +52,7 @@ def create_user():
     endpoint = PIXELA_BASE_URL
     response = make_pixela_request(endpoint, method="post", data=user_params, token=token)
     print(response.text)
+    print(endpoint)
 
 def create_graph(username, token, graphs):
     """Creates a new graph on Pixela."""
@@ -69,7 +71,8 @@ def create_graph(username, token, graphs):
     }
     endpoint = f"{PIXELA_BASE_URL}{username}/graphs"
     response = make_pixela_request(endpoint, method="post", data=graph_config, token=token)
-    print(response.text)  
+    print(response.text) 
+    print(endpoint)
 
 def post_pixel(username, token, graphs):
     """Posts a new data point to a Pixela graph."""
@@ -82,6 +85,7 @@ def post_pixel(username, token, graphs):
     data = {"date": date, "quantity": quantity}
     response = make_pixela_request(endpoint, method="post", data=data, token=token)
     print(response.text)
+    print(endpoint)
 
 def update_pixel(username, token, graphs):
     """Updates an existing data point on a Pixela graph."""
@@ -94,6 +98,7 @@ def update_pixel(username, token, graphs):
     data = {"quantity": quantity}
     response = make_pixela_request(endpoint, method="put", data=data, token=token)
     print(response.text)
+    print(endpoint)
 
 def delete_pixel(username, token, graphs):
     """Deletes a data point from a Pixela graph."""
@@ -104,6 +109,7 @@ def delete_pixel(username, token, graphs):
     endpoint = f"{PIXELA_BASE_URL}{username}/graphs/{graph_id}/{date}"
     response = make_pixela_request(endpoint, method="delete", token=token)
     print(response.text)
+    print(endpoint)
 
 def login():
     """Prompts user for credentials and validates them."""
@@ -116,6 +122,7 @@ def login():
 
     if response.status_code == 200:
         print("Login successful!")
+        print(f"Welcome to Pixela! Visit {login_endpoint} to view your profile.")
         return username, token
     else:
         print(response.text)
